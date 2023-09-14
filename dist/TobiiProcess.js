@@ -19,26 +19,27 @@ exports.TobiiProcess = void 0;
 var child_process_1 = require("child_process");
 var tsee_1 = require("tsee");
 var path_1 = require("path");
+var os_1 = require("os");
 var TobiiProcess = /** @class */ (function (_super) {
     __extends(TobiiProcess, _super);
     function TobiiProcess(exe) {
         if (exe === void 0) { exe = (0, path_1.join)(__dirname, '../bin/EyeLog.exe'); }
         var _this = _super.call(this) || this;
-        _this.process = (0, child_process_1.spawn)(exe);
-        _this.process.stdout.on('data', function (chunk) {
-            _this.onData(chunk.toString());
-        });
+        if ((0, os_1.platform)() == 'win32') {
+            _this.process = (0, child_process_1.spawn)(exe);
+            _this.process.stdout.on('data', function (chunk) {
+                _this.onData(chunk.toString());
+            });
+        }
         return _this;
     }
     TobiiProcess.prototype.setBounds = function (bounds) {
-        this.process
-            .stdin
-            .write(bounds.map(function (b) { return b.toString(); }).join(';') + '\n');
+        var _a;
+        (_a = this.process) === null || _a === void 0 ? void 0 : _a.stdin.write(bounds.map(function (b) { return b.toString(); }).join(';') + '\n');
     };
     TobiiProcess.prototype.setTimeout = function (value) {
-        this.process
-            .stdin
-            .write('timeout:' + value + '\n');
+        var _a;
+        (_a = this.process) === null || _a === void 0 ? void 0 : _a.stdin.write('timeout:' + value + '\n');
     };
     TobiiProcess.prototype.onData = function (data) {
         data = data.trim();

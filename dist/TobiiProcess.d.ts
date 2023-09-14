@@ -5,7 +5,7 @@ export declare class TobiiProcess extends EventEmitter<{
     click: (index: number, count: number) => void;
     exit: () => void;
 }> {
-    private process;
+    private process?;
     constructor(exe?: string);
     setBounds(bounds: Bound[]): void;
     setTimeout(value: number): void;
