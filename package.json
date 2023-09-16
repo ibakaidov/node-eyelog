@@ -1,13 +1,13 @@
 {
   "name": "eyelog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "exports": {
     "./": "./dist/"
   },
   "scripts": {
     "build": "tsc",
-    "postinstall": "npm run build && node download.js"
+    "postinstall": "node download.js"
   },
   "keywords": [],
   "author": "",
