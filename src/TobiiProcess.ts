@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { ChildProcessWithoutNullStreams, spawn } from "child_process";
 import { EventEmitter } from "tsee";
 import { join } from "path";
 import { Bound } from "./bound";
@@ -10,7 +10,7 @@ export class TobiiProcess extends EventEmitter<{
     click: (index: number, count: number) => void;
     exit: () => void
 }> {
-    private process?: import("child_process").ChildProcessWithoutNullStreams;
+    private process?: ChildProcessWithoutNullStreams;
     constructor(exe = join(__dirname, '../bin/EyeLog.exe')) {
         super()
         if (platform() == 'win32') {
