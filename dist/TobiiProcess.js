@@ -16,12 +16,12 @@ class TobiiProcess extends tsee_1.EventEmitter {
         }
     }
     setBounds(bounds) {
-        this.process?.stdin
-            .write(bounds.map((b) => b.toString()).join(';') + '\n');
+        var _a;
+        (_a = this.process) === null || _a === void 0 ? void 0 : _a.stdin.write(bounds.map((b) => b.toString()).join(';') + '\n');
     }
     setTimeout(value) {
-        this.process?.stdin
-            .write('timeout:' + value + '\n');
+        var _a;
+        (_a = this.process) === null || _a === void 0 ? void 0 : _a.stdin.write('timeout:' + value + '\n');
     }
     onData(data) {
         data = data.trim();
